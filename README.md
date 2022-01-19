@@ -1,9 +1,8 @@
-# javascript
-Collection of my JS beginner projects
+# JavaScript
 
 <br>
 <div align="center">
-    <img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_light_js_icon_130458.png" alt="JavaScript Logo" width="80" height="80">
+    <img src="https://icon-library.com/images/javascript-icon/javascript-icon-8.jpg" alt="JavaScript Logo" width="80" height="80">
 </div>
 <br>
 
