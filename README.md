@@ -1,4 +1,3 @@
-# JavaScript
 
 <br>
 <div align="center">
