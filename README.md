@@ -2,7 +2,7 @@
 
 <br>
 <div align="center">
-    <img src="https://icon-library.com/images/javascript-icon/javascript-icon-8.jpg" alt="JavaScript Logo" width="80" height="80">
+    <img src="https://icon-library.com/images/javascript-icon/javascript-icon-8.jpg" alt="JavaScript Logo" width="150" height="150">
 </div>
 <br>
 
