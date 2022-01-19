@@ -7,8 +7,7 @@
 
 # About #
 
-Hello :blush:<br>
-This repo is a collection of programs I did in JS to learn and practice it.
+Collection of programs I did in JS to learn and practice it.
 
 
 # Contact #
