@@ -66,7 +66,7 @@ const addLetter = (guess) => {
    }
 }
 const deleteLetter = () => {
-    if(currentCol > 0){         // Checking whether current col is valid for deletion
+    if(currentCol > 0 && isGameOver == false){         // Checking whether current col is valid for deletion
         currentCol--
         const guessBox = _('row'+currentRow+'-col'+currentCol) // fetching tile of given id
         guessBox.textContent = ''               // value of tile
@@ -83,7 +83,7 @@ const checkRow = () => {
             isGameOver = true                           // the game is over
             return
         }
-        else if(currentRow >=5){                        // If you use up all 6 attempts, the game is over
+        else if(currentRow >=5 && isGameOver == false){                        // If you use up all 6 attempts, the game is over
             showMessage(wordle)                         // Displays the wordle
             isGameOver = true
             return
