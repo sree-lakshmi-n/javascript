@@ -100,6 +100,10 @@ const showMessage = (message) => {
     messageDisplay.append(messageElement)                       // added to the message section
     setTimeout(() => messageDisplay.removeChild(messageElement),2000)   // message to be removed after 2s
 }
+const addKeyColour = (keyLetter,colour) => {
+    const key = document.getElementById(keyLetter)
+    key.classList.add(colour)
+}
 const flipTile = () => {            
     const rowTiles = document.querySelector('#row'+currentRow).childNodes       // collecting all cols of current row
     let word = wordle                       // assigning wordle to a temporary variable, word
@@ -112,13 +116,16 @@ const flipTile = () => {
             tile.classList.add('flip')
             if(tileLetter == wordle[index]){
                 tile.classList.add('green-overlay')     // Green overlay to letters at correct position
+                addKeyColour(tileLetter,'green-overlay')
             }
             else if(word.includes(tileLetter)){
                 tile.classList.add('yellow-overlay')    // Yellow overlay to letters at wrong position
                 word = word.replace(tileLetter,'')      // Removing yellow-overlay letters from word to remove repeated letters bug issue.
+                addKeyColour(tileLetter,'yellow-overlay')
             }
             else{
                 tile.classList.add('grey-overlay')      // Grey overlay to letters not present in wordle
+                addKeyColour(tileLetter,'grey-overlay')
             }
         },500*index)    // Each tile flips at a gap of 0.5s in the order of their index.
     })
