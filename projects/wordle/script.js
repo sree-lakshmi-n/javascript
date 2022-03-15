@@ -130,34 +130,15 @@ const flipTile = () => {
         },500*index)    // Each tile flips at a gap of 0.5s in the order of their index.
     })
 }
-// Converting CSV files to JSON
-const CSVToJSON = (csv) => {
-    const lines = csv.split('\n')
-    const keys = lines[0].split(',')
-    return lines.slice(1).map(line => {
-        return line.split(',').reduce((acc,curr,i) => {
-            const toAdd = {}
-            toAdd[keys[i]] = curr
-            return {
-                ...acc, ...toAdd
-            }
-        }, {})
-    })
-}
-// const handleFiles = (files) => {
-//     // Check for the various File API support.
-//     if (window.FileReader) {
-//         // FileReader are supported.
-//         getAsText(files[0]);
-//     } else {
-//         alert('FileReader are not supported in this browser.');
-//     }
-//   }
-  console.log(CSVToJSON(Wordle_La.txt));
 
-// console.log(CSVToJSON(Wordle_La.csv))
-// console.log(CSVToJSON(Wordle_Ta.csv))
-// Local Storage
-// const initLocalStorage = () => {
-    
-// }
+var data;
+	$.ajax({
+	  type: "GET",  
+	  url: "Wordle_La.csv",
+	  dataType: "text",       
+	  success: function(response)  
+	  {
+		data = $.csv.toArrays(response);
+		console.log(data[0][0].length);
+	  }   
+	});
