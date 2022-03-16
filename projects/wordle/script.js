@@ -131,18 +131,20 @@ const flipTile = () => {
     })
 }
 
-// Converting Wordle_La.csv and Wordle_Ta.csv to arrays
-var data;
+// Converting csv to arrays
+const csvToArray = (file) => {
+    let data;
 	$.ajax({
 	  type: "GET",  
 	  url: "Wordle_La.csv",
 	  dataType: "text",       
 	  success: function(response)  
 	  {
-  		wordle_words = response.split("\n")
-      for (let index = 0; index < wordle_words.length; index++) {
-        wordle_words[index] = wordle_words[index].substring(1,wordle_words[index].length-1)
-      }
-      console.log(wordle_words)
+  		data = response.split("\n")     // The words in our files are separated by newlines
+        for (let index = 0; index < data; index++) {
+            data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
+        }
+        return data
 	  }   
 	});
+}
