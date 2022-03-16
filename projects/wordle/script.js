@@ -4,6 +4,7 @@ const messageDisplay = document.querySelector('#message')
 const _ = (selector) => {
     return document.getElementById(selector)
 }
+
 // Game Rows creation - 6 rows as there are 6 guesses allowed and 5 columns since the wordle is a 5 letter word
 const gameRows = [
     ['','','','',''],
@@ -131,20 +132,54 @@ const flipTile = () => {
     })
 }
 
+let wordle_words = [];
+let valid_words = [];
 // Converting csv to arrays
-const csvToArray = (file) => {
-    let data;
-	$.ajax({
-	  type: "GET",  
-	  url: "Wordle_La.csv",
-	  dataType: "text",       
-	  success: function(response)  
-	  {
-  		data = response.split("\n")     // The words in our files are separated by newlines
-        for (let index = 0; index < data; index++) {
-            data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
-        }
-        return data
-	  }   
-	});
-}
+// function csvToArray(){
+//     let data;
+// 	$.ajax({
+// 	  type: "GET",  
+// 	  url: "Wordle_La.csv",
+// 	  dataType: "text", 
+//       async: false,      
+// 	  success: function(response)  
+// 	  {
+//   		data = response.split("\n")     // The words in our files are separated by newlines
+//         for (let index = 0; index < data; index++) {
+//             data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
+//         }
+//         // console.log(data);
+//         return data
+       
+// 	  }   
+// 	});
+// }
+
+// // Converting Wordle_La.csv and Wordle_Ta.csv to arrays
+
+// console.log(csvToArray().success)
+
+(function() {
+    function csvToArray(){
+        return $.ajax({
+          type: "GET",  
+          url: "Wordle_La.csv",
+          dataType: "text", 
+          async: false,      
+          success: function(response)  
+          {
+              let data = response.split("\n")     // The words in our files are separated by newlines
+            for (let index = 0; index < data; index++) {
+                data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
+            }
+            // console.log(data);
+            return data
+          }   
+        });
+    }
+    csvToArray().then(function(result){
+        //console.log(result)
+        wordle_words = result
+    })
+})();
+console.log(wordle_words);
