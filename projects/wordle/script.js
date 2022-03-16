@@ -46,7 +46,7 @@ let currentCol = 0
 let isGameOver = false
 // Adding functionality to KeyBoard Keys
 const buttonClicked = (key) => {
-    if(key === 'ENTER'){    // If enter is clicked, check the letters in the current row. If it's wrong, go for the next attempt (i.e, next row), if possible
+    if(key === 'ENTER' && isGameOver == false){    // If enter is clicked, check the letters in the current row. If it's wrong, go for the next attempt (i.e, next row), if possible
         checkRow()
         return
     }
