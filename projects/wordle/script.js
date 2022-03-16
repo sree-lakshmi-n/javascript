@@ -50,7 +50,7 @@ const buttonClicked = (key) => {
         checkRow()
         return
     }
-    if(key === '<<'){       // If delete is clicked, delete the last entered letter
+    if(key === '<<'|| key === 'BACKSPACE'){       // If delete is clicked, delete the last entered letter
         deleteLetter()
         return
     }    
@@ -131,6 +131,14 @@ const flipTile = () => {
         },500*index)    // Each tile flips at a gap of 0.5s in the order of their index.
     })
 }
+
+// Adding on key press functionality in addition to on screen keyboard
+window.addEventListener('keydown', function (e) {
+    if((e.key.length==1 && e.key.charAt(0).match(/[a-z]/i)) || e.key.toUpperCase() === 'ENTER' || e.key.toUpperCase() == 'BACKSPACE') {
+        buttonClicked(e.key.toUpperCase())
+    }
+    
+  }, false);
 
 let wordle_words = [];
 let valid_words = [];
