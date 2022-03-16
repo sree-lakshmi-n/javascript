@@ -131,6 +131,7 @@ const flipTile = () => {
     })
 }
 
+// Converting Wordle_La.csv and Wordle_Ta.csv to arrays
 var data;
 	$.ajax({
 	  type: "GET",  
@@ -138,7 +139,10 @@ var data;
 	  dataType: "text",       
 	  success: function(response)  
 	  {
-		data = $.csv.toArrays(response);
-		console.log(data[0][0].length);
+  		wordle_words = response.split("\n")
+      for (let index = 0; index < wordle_words.length; index++) {
+        wordle_words[index] = wordle_words[index].substring(1,wordle_words[index].length-1)
+      }
+      console.log(wordle_words)
 	  }   
 	});
