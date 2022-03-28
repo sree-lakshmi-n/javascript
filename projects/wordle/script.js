@@ -79,14 +79,13 @@ const checkRow = () => {
     let validWords = retrieveFromLocal("Valid_Words")
     if(currentCol > 4){   // currentCol becomes incremented by 1 at index 4 due to addLetter()
         const guess = gameRows[currentRow].join('')         // this is the user input
-        
         if(guess == wordle){                            // if input is same as wordle, then you've won
             flipTile()                                      // flipping tile animation
             showMessage("Congrats!")            
             isGameOver = true                           // the game is over
             return
         }
-        else if(validWords.includes(guess)){
+        else if(validWords.includes(guess.toLowerCase())){      // since words are stored in lowercase in word lists
             flipTile()                                      // flipping tile animation
             if(currentRow >=5 && isGameOver == false){                        // If you use up all 6 attempts, the game is over
                 showMessage(wordle)                         // Displays the wordle
