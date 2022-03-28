@@ -164,11 +164,14 @@ const formWords = (wordList) => {
     }
     return words
 }
-
+// Storing word lists in local storage
 function setToLocal(key,arr){
-    localStorage.setItem(key, JSON.stringify(arr));
+    localStorage.setItem(key, JSON.stringify(arr));     // storing array as a String
 }
-
-
+function retrieveFromLocal(key){
+    let arr = localStorage.getItem(key);    // retrieving data
+    return JSON.parse(arr)      // converting it back to array
+}
+console.log(retrieveFromLocal("Valid_Words"))
 convertToCSV("Wordle_Words.csv")
 convertToCSV("Valid_Words.csv")  
