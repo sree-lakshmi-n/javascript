@@ -5,7 +5,8 @@ const _ = (selector) => {
     return document.getElementById(selector)
 }
 
-// Game Rows creation - 6 rows as there are 6 guesses allowed and 5 columns since the wordle is a 5 letter word
+// Game Rows creation - 6 rows as there are 6 guesses allowed 
+// and 5 columns since the wordle is a 5 letter word
 const gameRows = [
     ['','','','',''],
     ['','','','',''],
@@ -19,19 +20,22 @@ gameRows.forEach((row,rowindex) => {
     const rowElement = document.createElement('div')
     rowElement.setAttribute('id','row'+rowindex)
     rowElement.setAttribute('class','rows')
-    row.forEach((col,colindex) => {             // For each col in a row, a div element is created
+    // For each col in a row, a div element is created
+    row.forEach((col,colindex) => {             
         const colElement = document.createElement('div')
         colElement.setAttribute('id','row'+rowindex+'-col'+colindex)
         colElement.setAttribute('class','cols')
         rowElement.append(colElement)        
     })
-    gameArea.append(rowElement)     // The divs are added to game-area section of the page
+    // The divs are added to game-area section of the page
+    gameArea.append(rowElement)     
 })
 // Keyboard Creation
 const keys = ['Q','W','E','R','T','Y','U','I','O',
 'P','A','S','D','F','G','H','J','K','L','ENTER',
 'Z','X','C','V','B','N','M','<<']
-keys.forEach(key => {           // For each key in the keys[], a div element is created
+// For each key in the keys[], a div element is created
+keys.forEach(key => {           
     const buttonElement = document.createElement('button')
     buttonElement.textContent = key
     buttonElement.setAttribute('id',key)
@@ -39,103 +43,151 @@ keys.forEach(key => {           // For each key in the keys[], a div element is 
     buttonElement.addEventListener('click',() => buttonClicked(key))
     keyboardArea.append(buttonElement)
 })  
-
-let wordle = "GUESS"        // word of the day
 let currentRow = 0          
 let currentCol = 0
 let isGameOver = false
+let wordleWords = retrieveFromLocal("Wordle_Words")
+// If you want random index -> Math.floor(Math.random() * wordleWords.length)
+let currWordIndex = 0
+setToLocal("currentWordIndex",currWordIndex)
+// word of the day    
+let wordle = wordleWords[retrieveFromLocal("currentWordIndex")].toUpperCase()     
+
 // Adding functionality to KeyBoard Keys
 const buttonClicked = (key) => {
-    if(key === 'ENTER' && isGameOver == false){    // If enter is clicked, check the letters in the current row. If it's wrong, go for the next attempt (i.e, next row), if possible
+    // If enter is clicked, check the letters in the current row. 
+    // If it's wrong, go for the next attempt (i.e, next row), if possible
+    if(key === 'ENTER' && isGameOver == false){    
         checkRow()
         return
     }
-    if(key === '<<'|| key === 'BACKSPACE'){       // If delete is clicked, delete the last entered letter
+    // If delete is clicked, delete the last entered letter
+    if(key === '<<'|| key === 'BACKSPACE'){       
         deleteLetter()
         return
     }    
-    addLetter(key)      // Populate the game area with the letter entered
+    // Populate the game area with the letter entered
+    addLetter(key)      
 }
 const addLetter = (guess) => {
    if(currentRow < 6 && currentCol < 5){
     const guessBox = _('row'+currentRow+'-col'+currentCol)
     guessBox.textContent = guess
-    guessBox.setAttribute('data',guess)         
-    gameRows[currentRow][currentCol] = guess    // edits the gameRows array accordingly
-    console.log(gameRows)
-    currentCol++                                // move to the next box
+    guessBox.setAttribute('data',guess)        
+    // edits the gameRows array accordingly 
+    gameRows[currentRow][currentCol] = guess    
+    // store gameRows in localStorage
+    setToLocal("gameRows",gameRows)
+    // move to the next box
+    currentCol++                                
    }
 }
 const deleteLetter = () => {
-    if(currentCol > 0 && isGameOver == false){         // Checking whether current col is valid for deletion
+    // Checking whether current col is valid for deletion
+    if(currentCol > 0 && isGameOver == false){         
         currentCol--
-        const guessBox = _('row'+currentRow+'-col'+currentCol) // fetching tile of given id
-        guessBox.textContent = ''               // value of tile
-        guessBox.setAttribute('data','')        // data attribute value of tile
-        gameRows[currentRow][currentCol] = ''   // modifying gameRows array
+        // fetching tile of given id
+        const guessBox = _('row'+currentRow+'-col'+currentCol) 
+         // value of tile
+        guessBox.textContent = ''              
+        // data attribute value of tile
+        guessBox.setAttribute('data','')        
+        // modifying gameRows array
+        gameRows[currentRow][currentCol] = ''   
     }
 } 
 const checkRow = () => {
     let validWords = retrieveFromLocal("Valid_Words")
-    if(currentCol > 4){   // currentCol becomes incremented by 1 at index 4 due to addLetter()
-        const guess = gameRows[currentRow].join('')         // this is the user input
-        if(guess == wordle){                            // if input is same as wordle, then you've won
-            flipTile()                                      // flipping tile animation
-            showMessage("Congrats!",3000)       // message and time for which it is to be shown     
-            isGameOver = true                           // the game is over
+    // currentCol becomes incremented by 1 at index 4 due to addLetter()
+    if(currentCol > 4){   
+        // this is the user input
+        const guess = gameRows[currentRow].join('')         
+        // if input is same as wordle, then you've won
+        if(guess == wordle){            
+             // flipping tile animation                
+            flipTile() 
+            // message and time for which it is to be shown                                    
+            showMessage("Congrats!",3000)      
+            // the game is over      
+            isGameOver = true                           
             return
         }
-        else if(validWords.includes(guess.toLowerCase())){      // since words are stored in lowercase in word lists
-            flipTile()                                      // flipping tile animation
-            if(currentRow >=5 && isGameOver == false){                        // If you use up all 6 attempts, the game is over
-                showMessage(wordle,5000)                         // Displays the wordle and time for which it is to be shown
+        // since words are stored in lowercase in word lists
+        else if(validWords.includes(guess.toLowerCase())||wordleWords.includes(guess.toLowerCase())){      
+            // flipping tile animation
+            flipTile() 
+            // If you use up all 6 attempts, the game is over                                     
+            if(currentRow >=5 && isGameOver == false){             
+                // Displays the wordle and time for which it is to be shown           
+                showMessage(wordle,5000)                         
                 isGameOver = true
                 return
             }
-            else if(currentRow < 5){                        // If you've remaining attempts, move to the next row
+            // If you've remaining attempts, move to the next row
+            else if(currentRow < 5){                        
                 currentRow++
-                currentCol = 0              // go to first tile in new row
+                // go to first tile in new row
+                currentCol = 0              
             }
         }
         else{
-            showMessage("Word not in list",200)  // message and time for which it is to be shown     
+            // message and time for which it is to be shown     
+            showMessage("Word not in list",200)  
         }
     }    
 }
-const showMessage = (message,time) => {                      
-    const messageElement = document.createElement('p')          // p tag in which message is added
+const showMessage = (message,time) => {        
+    // p tag in which message is added              
+    const messageElement = document.createElement('p')          
     messageElement.textContent = message
-    messageDisplay.append(messageElement)                       // added to the message section
-    setTimeout(() => messageDisplay.removeChild(messageElement),time)   // message to be removed after 2s
+    // added to the message section
+    messageDisplay.append(messageElement)                    
+    // message to be removed after 2s   
+    setTimeout(() => messageDisplay.removeChild(messageElement),time)   
 }
 const addKeyColour = (keyLetter,colour) => {
     const key = document.getElementById(keyLetter)
     key.classList.add(colour)
 }
 const flipTile = () => {            
-    const rowTiles = document.querySelector('#row'+currentRow).childNodes       // collecting all cols of current row
-    let word = wordle                       // assigning wordle to a temporary variable, word
+    // collecting all cols of current row
+    const rowTiles = document.querySelector('#row'+currentRow).childNodes       
+    // assigning wordle to a temporary variable, word
+    let word = wordle                       
     rowTiles.forEach((tile,index) => {
-        const tileLetter = tile.getAttribute('data')    // getting the letter of given tile
+        // getting the letter of given tile and converting to lowercase since the 
+        const tileLetter = tile.getAttribute('data')    
         if(tileLetter == wordle[index]){
-            word = word.replace(tileLetter,'')      // Removing the green-overlay letters from word so that they won't be coloured yellow. This bug occurs when there are repeated letters in wordle. Eg, GUESS has 2 S. If we input SSSSS, the first two S's would be yellow and last two would be green. To avoid this, we remove green-overlay letters from wordle earlier itself. We don't keep this inside setTimeout() to avoid messing with flipping tiles animation.
+             // Removing the green-overlay letters from word so that they won't 
+             // be coloured yellow. This bug occurs when there are repeated 
+             // letters in wordle. Eg, GUESS has 2 S. If we input SSSSS, 
+             // the first two S's would be yellow and last two would be green. 
+             // To avoid this, we remove green-overlay letters from wordle earlier itself.
+             //  We don't keep this inside setTimeout() to avoid messing with flipping 
+             // tiles animation.
+            word = word.replace(tileLetter,'')     
         }
         setTimeout(() => {
             tile.classList.add('flip')
             if(tileLetter == wordle[index]){
-                tile.classList.add('green-overlay')     // Green overlay to letters at correct position
+                // Green overlay to letters at correct position
+                tile.classList.add('green-overlay')     
                 addKeyColour(tileLetter,'green-overlay')
             }
             else if(word.includes(tileLetter)){
-                tile.classList.add('yellow-overlay')    // Yellow overlay to letters at wrong position
-                word = word.replace(tileLetter,'')      // Removing yellow-overlay letters from word to remove repeated letters bug issue.
+                // Yellow overlay to letters at wrong position
+                tile.classList.add('yellow-overlay')    
+                // Removing yellow-overlay letters from word to remove repeated letters bug issue.
+                word = word.replace(tileLetter,'')      
                 addKeyColour(tileLetter,'yellow-overlay')
             }
             else{
-                tile.classList.add('grey-overlay')      // Grey overlay to letters not present in wordle
+                // Grey overlay to letters not present in wordle
+                tile.classList.add('grey-overlay')      
                 addKeyColour(tileLetter,'grey-overlay')
             }
-        },500*index)    // Each tile flips at a gap of 0.5s in the order of their index.
+            // Each tile flips at a gap of 0.5s in the order of their index.
+        },500*index)    
     })
 }
 
@@ -159,7 +211,8 @@ function convertToCSV(fileName){
         success: function(response)  
         {
             data = formWords(response)
-            setToLocal(fileName.split(".")[0],data)     // storing the word lists in local storage with file name as the key   
+            // storing the word lists in local storage with file name as the key   
+            setToLocal(fileName.split(".")[0],data)     
         }   
       });
 }
@@ -173,12 +226,13 @@ const formWords = (wordList) => {
 }
 // Storing word lists in local storage
 function setToLocal(key,arr){
-    localStorage.setItem(key, JSON.stringify(arr));     // storing array as a String
+    // storing array as a String
+    localStorage.setItem(key, JSON.stringify(arr));     
 }
 function retrieveFromLocal(key){
     let arr = localStorage.getItem(key);    // retrieving data
     return JSON.parse(arr)      // converting it back to array
 }
-console.log(retrieveFromLocal("Valid_Words"))
+// Calling functions to convert Wordle_Words.csv and Valid_Words.csv to arrays
 convertToCSV("Wordle_Words.csv")
 convertToCSV("Valid_Words.csv")  
