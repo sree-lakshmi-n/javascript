@@ -81,14 +81,14 @@ const checkRow = () => {
         const guess = gameRows[currentRow].join('')         // this is the user input
         if(guess == wordle){                            // if input is same as wordle, then you've won
             flipTile()                                      // flipping tile animation
-            showMessage("Congrats!")            
+            showMessage("Congrats!",3000)       // message and time for which it is to be shown     
             isGameOver = true                           // the game is over
             return
         }
         else if(validWords.includes(guess.toLowerCase())){      // since words are stored in lowercase in word lists
             flipTile()                                      // flipping tile animation
             if(currentRow >=5 && isGameOver == false){                        // If you use up all 6 attempts, the game is over
-                showMessage(wordle)                         // Displays the wordle
+                showMessage(wordle,5000)                         // Displays the wordle and time for which it is to be shown
                 isGameOver = true
                 return
             }
@@ -98,15 +98,15 @@ const checkRow = () => {
             }
         }
         else{
-            showMessage("Word not in list")  
+            showMessage("Word not in list",200)  // message and time for which it is to be shown     
         }
     }    
 }
-const showMessage = (message) => {                      
+const showMessage = (message,time) => {                      
     const messageElement = document.createElement('p')          // p tag in which message is added
     messageElement.textContent = message
     messageDisplay.append(messageElement)                       // added to the message section
-    setTimeout(() => messageDisplay.removeChild(messageElement),2000)   // message to be removed after 2s
+    setTimeout(() => messageDisplay.removeChild(messageElement),time)   // message to be removed after 2s
 }
 const addKeyColour = (keyLetter,colour) => {
     const key = document.getElementById(keyLetter)
