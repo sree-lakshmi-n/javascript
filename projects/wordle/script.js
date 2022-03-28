@@ -142,52 +142,33 @@ window.addEventListener('keydown', function (e) {
 
 let wordle_words = [];
 let valid_words = [];
-// Converting csv to arrays
-// function csvToArray(){
-//     let data;
-// 	$.ajax({
-// 	  type: "GET",  
-// 	  url: "Wordle_La.csv",
-// 	  dataType: "text", 
-//       async: false,      
-// 	  success: function(response)  
-// 	  {
-//   		data = response.split("\n")     // The words in our files are separated by newlines
-//         for (let index = 0; index < data; index++) {
-//             data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
-//         }
-//         // console.log(data);
-//         return data
-       
-// 	  }   
-// 	});
-// }
-
-// // Converting Wordle_La.csv and Wordle_Ta.csv to arrays
-
-// console.log(csvToArray().success)
-
-(function() {
-    function csvToArray(){
-        return $.ajax({
-          type: "GET",  
-          url: "Wordle_La.csv",
-          dataType: "text", 
-          async: false,      
-          success: function(response)  
-          {
-              let data = response.split("\n")     // The words in our files are separated by newlines
-            for (let index = 0; index < data; index++) {
-                data[index] = data[index].substring(1,data[index].length-1)     // slicing off the quotation marks preceeding and succeeding each word
-            }
-            // console.log(data);
-            return data
-          }   
-        });
+//Converting csv to arrays
+var data;
+function convertToCSV(fileName){
+    $.ajax({
+        type: "GET",  
+        url: fileName,
+        dataType: "text",       
+        success: function(response)  
+        {
+            data = formWords(response)
+            setToLocal(fileName.split(".")[0],data)     // storing the word lists in local storage with file name as the key   
+        }   
+      });
+}
+// Refining the word list response
+const formWords = (wordList) => {
+    let words = wordList.split("\n")
+    for (let index = 0; index < words.length; index++) {
+        words[index] = words[index].substring(1,words[index].length-1)
     }
-    csvToArray().then(function(result){
-        //console.log(result)
-        wordle_words = result
-    })
-})();
-console.log(wordle_words);
+    return words
+}
+
+function setToLocal(key,arr){
+    localStorage.setItem(key, JSON.stringify(arr));
+}
+
+
+convertToCSV("Wordle_Words.csv")
+convertToCSV("Valid_Words.csv")  
