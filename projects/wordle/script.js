@@ -22,16 +22,17 @@ const dateIndex = (beginning, date) =>
 // Choosing the wordle word by calculating remainder with wordleWords array length
 const wordleForDate = (date) =>
     wordleWords[dateIndex(gameBeginning, date) % wordleWords.length];
+// word of the day
+let wordle = wordleForDate(today).toUpperCase()  
 
 let currentRow = 0          
 let currentCol = 0
 let isGameOver = false
 
-// If you want random index -> Math.floor(Math.random() * wordleWords.length)
-let currWordIndex = 0
+
 setToLocal("currentWordIndex",currWordIndex)
 // word of the day    
-let wordle = wordleForDate(today).toUpperCase()  
+
 
 // Game Rows creation - 6 rows as there are 6 guesses allowed 
 // and 5 columns since the wordle is a 5 letter word
