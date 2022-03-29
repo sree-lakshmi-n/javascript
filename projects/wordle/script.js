@@ -5,8 +5,47 @@ const _ = (selector) => {
     return document.getElementById(selector)
 }
 
+let wordle_words = [];
+let valid_words = [];
+//Converting csv to arrays
+var data;
+function convertToCSV(fileName){
+    $.ajax({
+        type: "GET",  
+        url: fileName,
+        dataType: "text",       
+        success: function(response)  
+        {
+            data = formWords(response)
+            // storing the word lists in local storage with file name as the key   
+            setToLocal(fileName.split(".")[0],data)     
+        }   
+      });
+}
+// Refining the word list response
+const formWords = (wordList) => {
+    let words = wordList.split("\n")
+    for (let index = 0; index < words.length; index++) {
+        words[index] = words[index].substring(1,words[index].length-1)
+    }
+    return words
+}
+// Storing word lists in local storage
+function setToLocal(key,arr){
+    // storing array as a String
+    localStorage.setItem(key, JSON.stringify(arr));     
+}
+function retrieveFromLocal(key){
+    let arr = localStorage.getItem(key);    // retrieving data
+    return JSON.parse(arr);      // converting it back to array
+}
+// Calling functions to convert Wordle_Words.csv and Valid_Words.csv to arrays
+convertToCSV("Wordle_Words.csv")
+convertToCSV("Valid_Words.csv")  
+
 // Selecting wordle word according to date
 let wordleWords = retrieveFromLocal("Wordle_Words")
+
 // the date when game began
 // In original wordle, it is 19th of June 2021 (set by author)
 const gameBeginning = new Date('29 Mar 2022').setHours(0, 0, 0, 0); 
@@ -29,8 +68,6 @@ let currentRow = 0
 let currentCol = 0
 let isGameOver = false
 
-
-setToLocal("currentWordIndex",currWordIndex)
 // word of the day    
 
 
@@ -219,40 +256,3 @@ window.addEventListener('keydown', function (e) {
     
   }, false);
 
-let wordle_words = [];
-let valid_words = [];
-//Converting csv to arrays
-var data;
-function convertToCSV(fileName){
-    $.ajax({
-        type: "GET",  
-        url: fileName,
-        dataType: "text",       
-        success: function(response)  
-        {
-            data = formWords(response)
-            // storing the word lists in local storage with file name as the key   
-            setToLocal(fileName.split(".")[0],data)     
-        }   
-      });
-}
-// Refining the word list response
-const formWords = (wordList) => {
-    let words = wordList.split("\n")
-    for (let index = 0; index < words.length; index++) {
-        words[index] = words[index].substring(1,words[index].length-1)
-    }
-    return words
-}
-// Storing word lists in local storage
-function setToLocal(key,arr){
-    // storing array as a String
-    localStorage.setItem(key, JSON.stringify(arr));     
-}
-function retrieveFromLocal(key){
-    let arr = localStorage.getItem(key);    // retrieving data
-    return JSON.parse(arr)      // converting it back to array
-}
-// Calling functions to convert Wordle_Words.csv and Valid_Words.csv to arrays
-convertToCSV("Wordle_Words.csv")
-convertToCSV("Valid_Words.csv")  
