@@ -5,6 +5,34 @@ const _ = (selector) => {
     return document.getElementById(selector)
 }
 
+// Selecting wordle word according to date
+let wordleWords = retrieveFromLocal("Wordle_Words")
+// the date when game began
+// In original wordle, it is 19th of June 2021 (set by author)
+const gameBeginning = new Date('29 Mar 2022').setHours(0, 0, 0, 0); 
+// today's date
+let today = new Date();    
+// Finding difference between today and beginning date.  
+// In JavaScript, the Date object is represented by a number of milliseconds 
+// since 1 January 1970, 00:00:00 UTC, with leap seconds ignored
+//Dividing it by the number 864e5 and rounding of it. 
+// 864e5 is the same as 86400000 or 1000*60*60*24 and represents 24 hours or a day.
+const dateIndex = (beginning, date) =>
+    Math.round((date.setHours(0, 0, 0, 0) - beginning) / 864e5)
+// Choosing the wordle word by calculating remainder with wordleWords array length
+const wordleForDate = (date) =>
+    wordleWords[dateIndex(gameBeginning, date) % wordleWords.length];
+
+let currentRow = 0          
+let currentCol = 0
+let isGameOver = false
+
+// If you want random index -> Math.floor(Math.random() * wordleWords.length)
+let currWordIndex = 0
+setToLocal("currentWordIndex",currWordIndex)
+// word of the day    
+let wordle = wordleForDate(today).toUpperCase()  
+
 // Game Rows creation - 6 rows as there are 6 guesses allowed 
 // and 5 columns since the wordle is a 5 letter word
 const gameRows = [
@@ -42,16 +70,7 @@ keys.forEach(key => {
     buttonElement.setAttribute('class','keyboard-keys')
     buttonElement.addEventListener('click',() => buttonClicked(key))
     keyboardArea.append(buttonElement)
-})  
-let currentRow = 0          
-let currentCol = 0
-let isGameOver = false
-let wordleWords = retrieveFromLocal("Wordle_Words")
-// If you want random index -> Math.floor(Math.random() * wordleWords.length)
-let currWordIndex = 0
-setToLocal("currentWordIndex",currWordIndex)
-// word of the day    
-let wordle = wordleWords[retrieveFromLocal("currentWordIndex")].toUpperCase()     
+})     
 
 // Adding functionality to KeyBoard Keys
 const buttonClicked = (key) => {
