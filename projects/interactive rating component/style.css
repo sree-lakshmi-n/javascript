@@ -30,6 +30,7 @@ body {
   min-width: 1.25em;
   text-align: center;
   padding: 3.5%;
+  background-color: #252d37;
 }
 .icon {
   padding: 4%;
@@ -58,7 +59,6 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #252d37;
 }
 .submit-btn {
   background-color: #fb7413;
@@ -81,6 +81,10 @@ body {
 /* Hover and Active States */
 .ratings li:nth-child(n):hover {
   background-color: #7c8798;
+  color: #ffffff;
+}
+.active {
+  background-color: #fb7413;
   color: #ffffff;
 }
 .ratings li:nth-child(n):active {
