@@ -75,3 +75,15 @@ body {
 .attribution a {
   color: #3e52a3;
 }
+/* Hover and Active States */
+.ratings li:nth-child(n):hover {
+  background-color: #7c8798;
+  color: #ffffff;
+}
+.ratings li:nth-child(n):active {
+  background-color: #fb7413;
+}
+.submit-btn:hover {
+  color: #fb7413;
+  background-color: #ffffff;
+}
