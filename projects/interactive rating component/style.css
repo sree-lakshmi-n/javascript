@@ -90,3 +90,16 @@ body {
   color: #fb7413;
   background-color: #ffffff;
 }
+
+/* Thank you state */
+.thanks-container {
+  text-align: center;
+}
+.rating-content {
+  color: #fb7413;
+  background-color: #2b3440;
+  border-radius: 1em;
+  width: 60%;
+  margin: auto;
+  padding: 1.5%;
+}
