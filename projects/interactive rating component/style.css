@@ -21,6 +21,19 @@ body {
   padding: 2em;
   border-radius: 1em;
 }
+.round {
+  position: relative;
+  border-radius: 50%;
+  min-width: 1.25em;
+  text-align: center;
+  padding: 3.5%;
+}
+.icon {
+  padding: 4%;
+  width: 1.25em;
+  background-color: #2b343f;
+  margin-bottom: 8%;
+}
 .title {
   color: #ffffff;
   margin-bottom: 4%;
@@ -38,11 +51,6 @@ body {
 }
 .ratings li:nth-child(n) {
   display: inline-block;
-  text-align: center;
-  position: relative;
-  border-radius: 50%;
-  min-width: 1.25em;
-  padding: 3.5%;
   margin: 0 2%;
   display: inline-flex;
   align-items: center;
