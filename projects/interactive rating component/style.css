@@ -54,7 +54,6 @@ body {
   margin-bottom: 8%;
 }
 .ratings li:nth-child(n) {
-  display: inline-block;
   margin: 0 2%;
   display: inline-flex;
   align-items: center;
@@ -113,4 +112,16 @@ body {
   width: 60%;
   margin: 0 auto 8% auto;
   padding: 1.5%;
+}
+
+/* Responsive css */
+@media only screen and (max-width: 450px) {
+  .container {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .container {
+    width: 70%;
+  }
 }
