@@ -95,11 +95,18 @@ body {
 .thanks-container {
   text-align: center;
 }
+.thanks-image {
+  margin: auto;
+  margin-bottom: 8%;
+}
+.thanks-image img {
+  width: 50%;
+}
 .rating-content {
   color: #fb7413;
   background-color: #2b3440;
   border-radius: 1em;
   width: 60%;
-  margin: auto;
+  margin: 0 auto 8% auto;
   padding: 1.5%;
 }
