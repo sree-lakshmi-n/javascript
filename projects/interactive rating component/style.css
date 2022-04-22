@@ -10,6 +10,8 @@ body {
 .container {
   background-color: #252d37;
   color: #7c8798;
+  width: 35%;
+  margin: auto;
 }
 .title {
   color: #ffffff;
