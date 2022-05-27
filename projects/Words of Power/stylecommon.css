@@ -1,0 +1,54 @@
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+body{ 
+  background: url('swwp-bg.svg') no-repeat center center fixed; 
+  background-size: cover;
+  background-color: #000;
+  font-family: 'ZohoPuviExtBold';
+  margin: 0;
+  font-size: 16px;
+}
+.hide{
+  display:none;
+}
+.show{
+  display:block;
+}
+.toplogo{
+  background-color: #000;
+  margin: 0;
+  padding: 1em;
+  color: #ffffff;
+  text-align: center;
+	font-size: 1.75em; 
+}
+.center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+@media only screen and (max-width: 1400px) {
+  body{
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  body{
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  body{
+    font-size: 5px;
+  }
+  .toplogo{
+	font-size: 3.6em; 
+}
+}
+@media only screen and (max-width: 300px) {
+  body{
+    font-size: 3px;
+  }
+}
