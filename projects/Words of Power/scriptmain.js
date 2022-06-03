@@ -1,25 +1,29 @@
-function maingame() {
-  this.wordlist = '';
-  this.currword = '';
+`use strict`;
+/* Global variables declaration */
+const maingame = function () {
+  this.wordlist = "";
+  this.currword = "";
   this.score = 0;
   this.noOfWords = 0;
   this.tab = [];
-  this.easyWordlist = '';
-  this.medWordlist = '';
-  this.hardWordlist = '';
-  this.mins = 1.5; 
-  this.secs = 0; 
+  this.easyWordlist = "";
+  this.medWordlist = "";
+  this.hardWordlist = "";
+  this.mins = 1.5;
+  this.secs = 0;
   this.timetempone = 0;
   this.timetemptwo = 0;
-}
+};
 
-maingame.prototype.getValue = function(key){
+// Getter and setter functions for global variables
+maingame.prototype.getValue = function (key) {
   return this[key];
-}
-
-maingame.prototype.setValue = function(key,value){
+};
+maingame.prototype.setValue = function (key, value) {
   this[key] = value;
-}
+};
+
+// Initial setup
 var mgame = new maingame();
 
 includeHTML("w3-include-html-main");
@@ -35,14 +39,18 @@ function includeHTML(arg) {
     file = elmnt.getAttribute(arg);
     if (file) {
       xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
+      xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = "Page not found.";
+          }
           elmnt.removeAttribute(arg);
           includeHTML();
         }
-      }
+      };
       xhttp.open("GET", file, true);
       xhttp.send();
       return;
@@ -50,74 +58,80 @@ function includeHTML(arg) {
   }
 }
 
-function play(){
-  hideElement(_('contentid3'));
-  showElement(_('contentid1'));
-  mgame.setValue('score',0);
-  mgame.setValue('tab',[]);
-  clearTimeout(mgame.getValue('timetempone'));
-  clearTimeout(mgame.getValue('timetemptwo'));
-  $(document).ready(function() {
+function play() {
+  hideElement(_("contentid3"));
+  showElement(_("contentid1"));
+  mgame.setValue("score", 0);
+  mgame.setValue("tab", []);
+  clearTimeout(mgame.getValue("timetempone"));
+  clearTimeout(mgame.getValue("timetemptwo"));
+  $(document).ready(function () {
     $.ajax({
-        type: "GET",
-        url: "difficultySheet.csv",
-        dataType: "text",
-        success: function(data) {processData(data);
+      type: "GET",
+      url: "difficultySheet.csv",
+      dataType: "text",
+      success: function (data) {
+        processData(data);
         var arr = mgame.getValue("easyWordlist");
-        var easywords = [... arr].filter(word => word.Difficulty == "easy");
-        var mediumwords = [... arr].filter(word => word.Difficulty == "medium");
-        var hardwords = [... arr].filter(word => word.Difficulty == "hard");
-        mgame.setValue('easyWordlist',formWordlist(easywords));
-        mgame.setValue('medWordlist',formWordlist(mediumwords));
-        mgame.setValue('hardWordlist',formWordlist(hardwords));
-        }
-     });
-});
+        var easywords = [...arr].filter((word) => word.Difficulty == "easy");
+        var mediumwords = [...arr].filter(
+          (word) => word.Difficulty == "medium"
+        );
+        var hardwords = [...arr].filter((word) => word.Difficulty == "hard");
+        mgame.setValue("easyWordlist", formWordlist(easywords));
+        mgame.setValue("medWordlist", formWordlist(mediumwords));
+        mgame.setValue("hardWordlist", formWordlist(hardwords));
+      },
+    });
+  });
 }
 
 function processData(csv) {
-    mgame.setValue('easyWordlist', $.csv.toObjects(csv));
-    return $.csv.toObjects(csv);
+  mgame.setValue("easyWordlist", $.csv.toObjects(csv));
+  return $.csv.toObjects(csv);
 }
 
-function formWordlist(givenWordlist){
-    var obj = {};
-    for (let i=0;i<givenWordlist.length;i++){
-      var keyy = givenWordlist[i].Word;
-      var valuee = givenWordlist[i].Meaning;
-      obj[keyy] = valuee;  
-    }
-    return obj;
+function formWordlist(givenWordlist) {
+  var obj = {};
+  for (let i = 0; i < givenWordlist.length; i++) {
+    var keyy = givenWordlist[i].Word;
+    var valuee = givenWordlist[i].Meaning;
+    obj[keyy] = valuee;
+  }
+  return obj;
 }
 
 /*Setting wordlist */
-function setWordList(ele){
-    switch(ele){
-      case 'easy': mgame.setValue('wordlist',mgame.getValue('easyWordlist'));
-                   break;
-      case 'medium': mgame.setValue('wordlist', mgame.getValue('medWordlist'));
-                   break;
-      case 'hard': mgame.setValue('wordlist', mgame.getValue('hardWordlist'));
-                   break;
-    }
-    mgame.setValue('noOfWords',Object.keys(mgame.getValue('wordlist')).length);
+function setWordList(ele) {
+  switch (ele) {
+    case "easy":
+      mgame.setValue("wordlist", mgame.getValue("easyWordlist"));
+      break;
+    case "medium":
+      mgame.setValue("wordlist", mgame.getValue("medWordlist"));
+      break;
+    case "hard":
+      mgame.setValue("wordlist", mgame.getValue("hardWordlist"));
+      break;
+  }
+  mgame.setValue("noOfWords", Object.keys(mgame.getValue("wordlist")).length);
 }
 
 /*Fetching Key */
 function key(int) {
-    var j = -1;
-    let num = mgame.getValue('wordlist');
-    for(var i in num) {
-        j++;
-        if(j==int) {
-            return i;
-        } else {
-            continue;
-        }
+  var j = -1;
+  let num = mgame.getValue("wordlist");
+  for (var i in num) {
+    j++;
+    if (j == int) {
+      return i;
+    } else {
+      continue;
     }
+  }
 }
 
-function _(selector){
+function _(selector) {
   return document.getElementById(selector);
 }
 
@@ -126,7 +140,7 @@ function hideElement(elem) {
   elem.classList.add("hide");
 }
 
-function showElement(elem){
+function showElement(elem) {
   elem.classList.remove("hide");
   elem.classList.add("show");
 }
@@ -143,156 +157,154 @@ function fillHTML(elem, code) {
   elem.innerHTML = code;
 }
 
-function fillPlaceHolder(elem,text){
+function fillPlaceHolder(elem, text) {
   elem.placeholder = text;
 }
 
-function setColor(elem,colour){
+function setColor(elem, colour) {
   elem.style.color = colour;
 }
 
 /* Timer */
-function countdown() { 
-  mgame.setValue('timetempone',setTimeout('Decrement()', 60)); 
-} 
+function countdown() {
+  mgame.setValue("timetempone", setTimeout("Decrement()", 60));
+}
 
-function Decrement() { 
-  if (true) { 
-      minutes = _("minutes"); 
-      seconds = _("seconds"); 
-      if (seconds < 59) { 
-          fillValue(seconds, mgame.getValue('secs'));
-      } 
-      else { 
-          fillValue(minutes, getminutes());
-          fillValue(seconds,getseconds()); 
-      } 
+function Decrement() {
+  if (true) {
+    minutes = _("minutes");
+    seconds = _("seconds");
+    if (seconds < 59) {
+      fillValue(seconds, mgame.getValue("secs"));
+    } else {
+      fillValue(minutes, getminutes());
+      fillValue(seconds, getseconds());
+    }
 
-      if ((mgame.getValue('mins') < 0.5) && (mgame.getValue('secs') < 30)) { 
-          setColor(minutes,"red"); 
-          setColor(seconds,"red");
-          setColor(_('timeDivider'),"red"); 
-      } 
+    if (mgame.getValue("mins") < 0.5 && mgame.getValue("secs") < 30) {
+      setColor(minutes, "red");
+      setColor(seconds, "red");
+      setColor(_("timeDivider"), "red");
+    }
 
-      if (mgame.getValue('mins') <= 0 && mgame.getValue('secs') <= 0) { 
-          change('result'); 
-          fillValue(minutes,0); 
-          fillValue(seconds, 0); 
-      } 
-      else { 
-          let temp = mgame.getValue('secs') - 1;
-          mgame.setValue('secs', temp); 
-          mgame.setValue('timetemptwo',setTimeout('Decrement()', 1000)); 
-      } 
-  } 
-} 
+    if (mgame.getValue("mins") <= 0 && mgame.getValue("secs") <= 0) {
+      change("result");
+      fillValue(minutes, 0);
+      fillValue(seconds, 0);
+    } else {
+      let temp = mgame.getValue("secs") - 1;
+      mgame.setValue("secs", temp);
+      mgame.setValue("timetemptwo", setTimeout("Decrement()", 1000));
+    }
+  }
+}
 
-function getminutes() { 
-  mgame.setValue('mins', Math.floor(mgame.getValue('secs') / 60)); 
-  return mgame.getValue('mins'); 
-} 
+function getminutes() {
+  mgame.setValue("mins", Math.floor(mgame.getValue("secs") / 60));
+  return mgame.getValue("mins");
+}
 
-function getseconds() { 
-  return mgame.getValue('secs') - Math.round(mgame.getValue('mins') * 60); 
-} 
+function getseconds() {
+  return mgame.getValue("secs") - Math.round(mgame.getValue("mins") * 60);
+}
 
-function gamePageSetup(arg){
-  fillText(_('level'), arg);
-  fillText(_('points'),'0');
-  fillText(_('streak'),'0');
-  _('wordsanswered').innerText = '';
-  setColor(_("minutes"),'#ffffff'); 
-  setColor(_("seconds"),'#ffffff'); 
-  setColor(_('timeDivider'),"#ffffff"); 
-  mgame.setValue('mins',1.5);
-  mgame.setValue('secs',mgame.getValue('mins') * 60); 
+function gamePageSetup(arg) {
+  fillText(_("level"), arg);
+  fillText(_("points"), "0");
+  fillText(_("streak"), "0");
+  _("wordsanswered").innerText = "";
+  setColor(_("minutes"), "#ffffff");
+  setColor(_("seconds"), "#ffffff");
+  setColor(_("timeDivider"), "#ffffff");
+  mgame.setValue("mins", 1.5);
+  mgame.setValue("secs", mgame.getValue("mins") * 60);
   countdown();
   setWordList(arg);
   dispRanWord();
 }
 
-function change(ele){
+function change(ele) {
   let arg = ele.id;
-  if(ele=="result"|| arg == undefined){
-    showElement(_('contentid3'));
-    hideElement(_('contentid2'));
+  if (ele == "result" || arg == undefined) {
+    showElement(_("contentid3"));
+    hideElement(_("contentid2"));
     result();
-  }
-  else{
-    hideElement(_('contentid1'));
-    showElement(_('contentid2'));
+  } else {
+    hideElement(_("contentid1"));
+    showElement(_("contentid2"));
     gamePageSetup(arg);
   }
 }
 
 /* ClueSection display */
-function dispRanWord(){
-  let nWords = mgame.getValue('noOfWords');
-  if(nWords>0){
-    let ranNo = Math.floor(Math.random()*nWords);
-    mgame.setValue('currword',key(ranNo));
-    let currentWrd = mgame.getValue('currword');
-    fillHTML(_('clueArea'),mgame.getValue('wordlist')[currentWrd]);
-    fillPlaceHolder(_('usertext'),'Starts with '+currentWrd.charAt(0));
-    delete mgame.getValue('wordlist')[currentWrd];
+function dispRanWord() {
+  let nWords = mgame.getValue("noOfWords");
+  if (nWords > 0) {
+    let ranNo = Math.floor(Math.random() * nWords);
+    mgame.setValue("currword", key(ranNo));
+    let currentWrd = mgame.getValue("currword");
+    fillHTML(_("clueArea"), mgame.getValue("wordlist")[currentWrd]);
+    fillPlaceHolder(_("usertext"), "Starts with " + currentWrd.charAt(0));
+    delete mgame.getValue("wordlist")[currentWrd];
     nWords--;
-    mgame.setValue('noOfWords',nWords);
-  }
-  else {
-    change('result');
+    mgame.setValue("noOfWords", nWords);
+  } else {
+    change("result");
   }
 }
 
 // PlaySection
-function checkInputWord(){
- userinput = _("usertext").value.toLowerCase();
- let currentWrd = mgame.getValue('currword');
- for (i=0;i<userinput.length;i++){
-   if(userinput[i]==currentWrd[i]){
-     setColor(_("usertext"),'#212121');
-   }
-   else {
-     setColor(_("usertext"),'#DA3E49');
-   }
- }
- if(userinput==currentWrd){
-       let trackScore = mgame.getValue('score');
-       let tabVal = mgame.getValue('tab');
-       tabVal.push(1);
-       trackScore++;
-       mgame.setValue('score',trackScore);
-       mgame.setValue('tab',tabVal);
-       fillText(_('points'),trackScore);
-       fillText(_('streak'),findStreak());
-       fillValue(_('usertext'),'');
-       _('wordsanswered').innerText += currentWrd + '\n';
-       dispRanWord();
-     }
+function checkInputWord() {
+  userinput = _("usertext").value.toLowerCase();
+  let currentWrd = mgame.getValue("currword");
+  for (i = 0; i < userinput.length; i++) {
+    if (userinput[i] == currentWrd[i]) {
+      setColor(_("usertext"), "#212121");
+    } else {
+      setColor(_("usertext"), "#DA3E49");
+    }
+  }
+  if (userinput == currentWrd) {
+    let trackScore = mgame.getValue("score");
+    let tabVal = mgame.getValue("tab");
+    tabVal.push(1);
+    trackScore++;
+    mgame.setValue("score", trackScore);
+    mgame.setValue("tab", tabVal);
+    fillText(_("points"), trackScore);
+    fillText(_("streak"), findStreak());
+    fillValue(_("usertext"), "");
+    _("wordsanswered").innerText += currentWrd + "\n";
+    dispRanWord();
+  }
 }
 
 // to find streak
-function findStreak(){
-  let tabVal = mgame.getValue('tab');
-  let streaks = tabVal.reduce(function(res, n) { 
-    if (n) res[res.length-1]++;
-    else res.push(0);
-    return res;
-  }, [0]);
-  streaks.join(',');
+function findStreak() {
+  let tabVal = mgame.getValue("tab");
+  let streaks = tabVal.reduce(
+    function (res, n) {
+      if (n) res[res.length - 1]++;
+      else res.push(0);
+      return res;
+    },
+    [0]
+  );
+  streaks.join(",");
   return Math.max.apply(Math, streaks);
 }
 
 // Skip button
-function skip(){
-  let tabVal = mgame.getValue('tab');
+function skip() {
+  let tabVal = mgame.getValue("tab");
   tabVal.push(0);
-  mgame.setValue('tab',tabVal);
-  fillValue(_('usertext'),'');
-  fillText(_('streak'),findStreak());
+  mgame.setValue("tab", tabVal);
+  fillValue(_("usertext"), "");
+  fillText(_("streak"), findStreak());
   dispRanWord();
 }
 
-function result(){
-  fillText(_('ans'),mgame.getValue('score'));
-  fillText(_('longeststreak'),findStreak());
+function result() {
+  fillText(_("ans"), mgame.getValue("score"));
+  fillText(_("longeststreak"), findStreak());
 }
