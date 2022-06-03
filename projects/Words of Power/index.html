@@ -3,12 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>SWWP</title>
-    <link href="stylecommon.css" rel="stylesheet" type="text/css" />
-    <link href="stylemain.css" rel="stylesheet" type="text/css" />
-    <link href="stylegame.css" rel="stylesheet" type="text/css" />
-    <link href="styleresult.css" rel="stylesheet" type="text/css" />
-    <link href="fontstyles.css" rel="stylesheet" type="text/css" />
+    <title>Words of Power</title>
+    <link
+      href="./stylesheets/stylecommon.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="./stylesheets/stylemain.css" rel="stylesheet" type="text/css" />
+    <link href="./stylesheets/stylegame.css" rel="stylesheet" type="text/css" />
+    <link
+      href="./stylesheets/styleresult.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="./stylesheets/fontstyles.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
@@ -16,11 +28,15 @@
   </head>
   <body>
     <div class="toplogo">Words of Power</div>
-    <div id="contentid1" w3-include-html-main="main.html"></div>
-    <div id="contentid2" w3-include-html-game="game.html" class="hide"></div>
+    <div id="contentid1" w3-include-html-main="./html/main.html"></div>
+    <div
+      id="contentid2"
+      w3-include-html-game="./html/game.html"
+      class="hide"
+    ></div>
     <div
       id="contentid3"
-      w3-include-html-result="result.html"
+      w3-include-html-result="./html/result.html"
       class="hide"
     ></div>
   </body>
