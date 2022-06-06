@@ -175,10 +175,10 @@ function Decrement() {
     minutes = _("minutes");
     seconds = _("seconds");
     if (seconds < 59) {
-      fillValue(seconds, mgame.getValue("secs"));
+      fillText(seconds, mgame.getValue("secs"));
     } else {
-      fillValue(minutes, getminutes());
-      fillValue(seconds, getseconds());
+      fillText(minutes, getminutes());
+      fillText(seconds, getseconds());
     }
 
     if (mgame.getValue("mins") < 0.5 && mgame.getValue("secs") < 30) {
@@ -189,12 +189,20 @@ function Decrement() {
 
     if (mgame.getValue("mins") <= 0 && mgame.getValue("secs") <= 0) {
       change("result");
-      fillValue(minutes, 0);
-      fillValue(seconds, 0);
+      fillText(minutes, 0);
+      fillText(seconds, 0);
     } else {
       let temp = mgame.getValue("secs") - 1;
       mgame.setValue("secs", temp);
       mgame.setValue("timetemptwo", setTimeout("Decrement()", 1000));
+    }
+
+    if (mgame.getValue("mins") < 10)
+      fillText(minutes, "0" + mgame.getValue("mins"));
+    if (mgame.getValue("secs") < 9)
+      fillText(seconds, "0" + (mgame.getValue("secs") + 1));
+    if (mgame.getValue("secs") < 69 && mgame.getValue("secs") >= 59) {
+      fillText(seconds, "0" + (mgame.getValue("secs") - 59));
     }
   }
 }
