@@ -13,6 +13,7 @@ const maingame = function () {
   this.secs = 0;
   this.timetempone = 0;
   this.timetemptwo = 0;
+  this.linenum = 17;
 };
 
 // Getter and setter functions for global variables
@@ -165,6 +166,10 @@ function setColor(elem, colour) {
   elem.style.color = colour;
 }
 
+function setStroke(elem, colour) {
+  elem.style.stroke = colour;
+}
+
 /* Timer */
 function countdown() {
   mgame.setValue("timetempone", setTimeout("Decrement()", 60));
@@ -197,13 +202,28 @@ function Decrement() {
       mgame.setValue("timetemptwo", setTimeout("Decrement()", 1000));
     }
 
-    if (mgame.getValue("mins") < 10)
-      fillText(minutes, "0" + mgame.getValue("mins"));
+    // Timer mins and secs zero padding
+    fillText(minutes, "0" + mgame.getValue("mins"));
     if (mgame.getValue("secs") < 9)
       fillText(seconds, "0" + (mgame.getValue("secs") + 1));
-    if (mgame.getValue("secs") < 69 && mgame.getValue("secs") >= 59) {
+    if (mgame.getValue("secs") < 69 && mgame.getValue("secs") >= 59)
       fillText(seconds, "0" + (mgame.getValue("secs") - 59));
-    }
+  }
+
+  // Timer animation
+  if (mgame.getValue("secs") >= 36 && mgame.getValue("secs") % 3 == 0) {
+    setStroke(
+      _(`Line_10_${mgame.getValue("linenum")}_1_--inject-1`),
+      "#30314D"
+    );
+    mgame.setValue("linenum", mgame.getValue("linenum") - 1);
+  } else if (mgame.getValue("secs") < 36 && mgame.getValue("secs") % 2 == 0) {
+    if (mgame.getValue("linenum") < 0) mgame.setValue("linenum", 17);
+    setStroke(
+      _(`Line_11_${mgame.getValue("linenum")}_1_--inject-1`),
+      "#30314D"
+    );
+    mgame.setValue("linenum", mgame.getValue("linenum") - 1);
   }
 }
 
