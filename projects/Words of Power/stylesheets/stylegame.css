@@ -1,4 +1,86 @@
-input:focus{
+.cluesection {
+  color: #ffffff;
+  width: 100%;
+  font-family: "ZohoPuviRegular", sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 1.2em;
+}
+.timer {
+  /* background: url("../images/Timer-Static.svg") no-repeat center;
+  background-size: 100% 100%; */
+  color: #ffffff;
+  font-size: 0.8em;
+  font-family: "ZohoPuviSemibold";
+  text-align: center;
+  min-height: 8em;
+  line-height: 6em;
+  position: relative;
+  
+}
+.timer-static,
+.timer-light,
+.timer-dark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 30%;
+  z-index: -1;
+ 
+}
+.timer-light,
+.timer-dark {
+  width: 23%;
+  top: 25%;
+ 
+}
+.timer-static {
+  padding: 0.2em;
+}
+.timerprop {
+  display: inline-block;
+  margin-top: 2em;
+}
+
+.st0{
+  fill:none;
+  stroke:#30314D;
+  stroke-linecap:round;
+}
+.st1{
+  fill:none;
+  stroke:#FFFFFF;
+  stroke-linecap:round;
+}
+/* #Line_11_0_1_--inject-1{
+  stroke: aquamarine;
+} */
+
+/* .st1{
+  fill: aqua;
+  stroke:green;
+} */
+/* .timer-dark {
+  clip: rect(0px, 100px, 100px, 50px);
+  z-index: 2;
+  /* animation: fill ease-in-out 3s;
+  transform: rotate(135deg); */
+
+  /* animation: lightAnimation 1s infinite; */
+} */
+
+/* @keyframes lightAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+/* input:focus{
   outline: none;
 }
 .timer{
@@ -173,4 +255,4 @@ h4{
   .timerprop,.cluesection{
     font-size: 15px;
   }
-}
+} */
