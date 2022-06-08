@@ -16,6 +16,7 @@
   position: relative;
   width: 10%;
   float: right;
+  z-index: 5;
 }
 .timer-static,
 .timer-light {
@@ -52,6 +53,21 @@
   stroke: #ffffff;
   stroke-linecap: round;
 }
+.playsection {
+  width: 100%;
+  float: right;
+}
+#usertext {
+  font-family: "ZohoPuviBold", sans-serif;
+  font-style: italic;
+  font-size: 2em;
+  border: none;
+  padding: 0.4em;
+  background-color: #ffffff;
+  color: #c9c6d9;
+  width: 80%;
+  float: right;
+}
 
 /* Skip button styling */
 #skipbtn {
@@ -67,6 +83,11 @@
   /* position: fixed;
   top: 45%;
   right: 2%; */
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 /* IPad Screens */
 @media only screen and (max-width: 850px) {
@@ -84,11 +105,27 @@
   .timer-light {
     width: 23%;
   }
+  .playsection {
+    width: 100%;
+    float: unset;
+    margin-top: 2.5em;
+  }
+  #usertext {
+    font-size: 1.5em;
+    float: unset;
+    width: 100%;
+  }
 }
 /* Mobile Screens */
 @media only screen and (max-width: 500px) {
   .timer {
     width: unset;
+  }
+  .playsection {
+    margin-top: 2em;
+  }
+  #usertext {
+    font-size: 1.2em;
   }
 }
 /* #Line_11_0_1_--inject-1{
