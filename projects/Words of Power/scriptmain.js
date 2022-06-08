@@ -59,6 +59,10 @@ function includeHTML(arg) {
   }
 }
 
+function reset() {
+  play();
+  timerStrokeReset();
+}
 function play() {
   hideElement(_("contentid3"));
   showElement(_("contentid1"));
@@ -66,6 +70,7 @@ function play() {
   mgame.setValue("tab", []);
   clearTimeout(mgame.getValue("timetempone"));
   clearTimeout(mgame.getValue("timetemptwo"));
+
   $(document).ready(function () {
     $.ajax({
       type: "GET",
@@ -234,6 +239,15 @@ function getminutes() {
 
 function getseconds() {
   return mgame.getValue("secs") - Math.round(mgame.getValue("mins") * 60);
+}
+
+// Timer Stroke Reset
+function timerStrokeReset() {
+  mgame.setValue("linenum", 17);
+  for (let i = 0; i < 18; i++) {
+    setStroke(_(`Line_10_${i}_1_--inject-1`), "#FFFFFF");
+    setStroke(_(`Line_11_${i}_1_--inject-1`), "#FFFFFF");
+  }
 }
 
 function gamePageSetup(arg) {
