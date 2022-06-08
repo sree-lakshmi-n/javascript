@@ -7,8 +7,6 @@
   padding: 1.2em;
 }
 .timer {
-  /* background: url("../images/Timer-Static.svg") no-repeat center;
-  background-size: 100% 100%; */
   color: #ffffff;
   font-size: 0.8em;
   font-family: "ZohoPuviSemibold";
@@ -16,44 +14,82 @@
   min-height: 8em;
   line-height: 6em;
   position: relative;
-  
+  width: 10%;
+  float: right;
 }
 .timer-static,
-.timer-light,
-.timer-dark {
+.timer-light {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 30%;
+
   z-index: -1;
- 
-}
-.timer-light,
-.timer-dark {
-  width: 23%;
-  top: 25%;
- 
 }
 .timer-static {
   padding: 0.2em;
+  width: 80%;
 }
+.timer-light {
+  width: 60%;
+  top: 25%;
+}
+
 .timerprop {
   display: inline-block;
   margin-top: 2em;
 }
 
-.st0{
-  fill:none;
-  stroke:#30314D;
-  stroke-linecap:round;
+.st0 {
+  fill: none;
+  stroke: #30314d;
+  stroke-linecap: round;
 }
-.st1{
-  fill:none;
-  stroke:#FFFFFF;
-  stroke-linecap:round;
+.st1 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+}
+
+/* Skip button styling */
+#skipbtn {
+  background-color: #f9d54f;
+  color: #212121;
+  border-radius: 0.4em;
+  font-size: 1.6em;
+  padding: 0.4em 1.5em;
+  text-align: center;
+  display: inline-block;
+  font-family: "ZohoPuviRegular", sans-serif;
+  font-style: italic;
+  /* position: fixed;
+  top: 45%;
+  right: 2%; */
+}
+/* IPad Screens */
+@media only screen and (max-width: 850px) {
+  .cluesection {
+    margin-bottom: 1em;
+  }
+  .timer {
+    width: 50%;
+    float: unset;
+    margin: auto;
+  }
+  .timer-static {
+    width: 30%;
+  }
+  .timer-light {
+    width: 23%;
+  }
+}
+/* Mobile Screens */
+@media only screen and (max-width: 500px) {
+  .timer {
+    width: unset;
+  }
 }
 /* #Line_11_0_1_--inject-1{
   stroke: aquamarine;
@@ -69,8 +105,7 @@
   /* animation: fill ease-in-out 3s;
   transform: rotate(135deg); */
 
-  /* animation: lightAnimation 1s infinite; */
-} */
+/* animation: lightAnimation 1s infinite; */
 
 /* @keyframes lightAnimation {
   from {
@@ -182,7 +217,7 @@ h4{
   padding: 7%;
   font-size: 1.25em;
   font-family: 'ZohoPuviBold';
-  color: #212121;
+  color: 212121;
   overflow: auto;
 }
 #wordsanswered{
