@@ -28,13 +28,14 @@
   transform: rotate(0deg);
   font-size: 3.2em;
 }
+/* IPad Screens */
 @media only screen and (max-width: 820px) {
   .box {
     width: 50%;
   }
   .difficultybuttons {
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1.5em;
     min-height: 6em;
     line-height: 6em;
     margin: unset;
@@ -46,5 +47,11 @@
   .difficultybuttons:hover,
   .difficultybuttons:active {
     font-size: 1.4em;
+  }
+}
+/* Mobile Screens */
+@media only screen and (max-width: 500px) {
+  .difficultybuttons {
+    font-size: 1.2em;
   }
 }
