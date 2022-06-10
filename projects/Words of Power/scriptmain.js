@@ -255,6 +255,7 @@ function gamePageSetup(arg) {
   fillText(_("points"), "0");
   fillText(_("streak"), "0");
   _("wordsanswered").innerText = "";
+  _("wordsmissed").innerText = "";
   setColor(_("minutes"), "#ffffff");
   setColor(_("seconds"), "#ffffff");
   setColor(_("timeDivider"), "#ffffff");
@@ -339,10 +340,12 @@ function findStreak() {
 // Skip button
 function skip() {
   let tabVal = mgame.getValue("tab");
+  let currentWrd = mgame.getValue("currword");
   tabVal.push(0);
   mgame.setValue("tab", tabVal);
   fillValue(_("usertext"), "");
   fillText(_("streak"), findStreak());
+  _("wordsmissed").innerText += currentWrd + "\n";
   dispRanWord();
 }
 
