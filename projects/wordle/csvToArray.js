@@ -11,7 +11,7 @@ const arr = (csv) => {
     .map((e) =>
       e
         .split(",")
-        .map((e) => e.trim())
+        .map((e) => e.trim().substring(1, 6)) // .substring(1, 6) to trim the double quotes on either side
         .join("")
     ); // split each line to array
 };
