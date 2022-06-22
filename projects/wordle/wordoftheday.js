@@ -1,4 +1,4 @@
-const { wordle_words } = require(`${__dirname}/csvToArray.js`);
+const { wordle_words } = require(`./csvToArray.js`);
 
 // the date when game began
 // In original wordle, it is 19th of June 2021 (set by author)
