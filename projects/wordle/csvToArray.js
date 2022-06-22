@@ -8,7 +8,12 @@ const arr = (csv) => {
     .toString() // convert Buffer to string
     .split("\n") // split string to lines
     .map((e) => e.trim()) // remove white spaces for each line
-    .map((e) => e.split(",").map((e) => e.trim())); // split each line to array
+    .map((e) =>
+      e
+        .split(",")
+        .map((e) => e.trim())
+        .join("")
+    ); // split each line to array
 };
 
 // Exporting Wordle words and Valid words array
