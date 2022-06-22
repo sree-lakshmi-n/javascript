@@ -11,3 +11,8 @@ let today = new Date();
 // Finding difference between today and beginning date.
 const dateIndex = (beginning, date) =>
   Math.round((date.setHours(0, 0, 0, 0) - beginning) / 864e5);
+
+// Choosing the wordle word by calculating remainder with wordleWords array length
+const wordle =
+  wordle_words[dateIndex(gameBegin, today) % wordle_words.length].toUpperCase();
+console.log(wordle);
