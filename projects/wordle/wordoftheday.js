@@ -9,3 +9,5 @@ let today = new Date();
 /* In JavaScript, the Date object is represented by a number of milliseconds since 1 January 1970, 00:00:00 UTC, with leap seconds ignored. Dividing it by the number 864e5 and rounding of it. 864e5 is the same as 86400000 or 1000*60*60*24 and represents 24 hours or a day. */
 
 // Finding difference between today and beginning date.
+const dateIndex = (beginning, date) =>
+  Math.round((date.setHours(0, 0, 0, 0) - beginning) / 864e5);
