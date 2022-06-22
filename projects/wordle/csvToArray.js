@@ -13,6 +13,7 @@ const arr = (csv) => {
         .split(",")
         .map((e) => e.trim().substring(1, 6)) // .substring(1, 6) to trim the double quotes on either side
         .join("")
+        .toUpperCase()
     ); // split each line to array
 };
 
