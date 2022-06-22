@@ -14,4 +14,4 @@ const dateIndex = (beginning, date) =>
 
 // Choosing the wordle word by calculating remainder with wordleWords array length. Exporting wordle.
 exports.wordle =
-  wordle_words[dateIndex(gameBegin, today) % wordle_words.length].toUpperCase();
+  wordle_words[dateIndex(gameBegin, today) % wordle_words.length];
