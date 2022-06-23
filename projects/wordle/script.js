@@ -9,3 +9,7 @@ const messageDisplay = document.querySelector("#message");
 const _ = (selector) => {
   return document.getElementById(selector);
 };
+// Global variables
+let currentRow = 0;
+let currentCol = 0;
+let isGameOver = false;
