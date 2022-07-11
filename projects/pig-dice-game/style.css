@@ -6,4 +6,13 @@
 body {
   font-family: sans-serif;
   line-height: 1;
+
+  background-image: linear-gradient(
+      rgba(62, 20, 20, 0.4),
+      rgba(62, 20, 20, 0.4)
+    ),
+    url(https://iftemplar.github.io/works/pig-dice-game/img/back.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
