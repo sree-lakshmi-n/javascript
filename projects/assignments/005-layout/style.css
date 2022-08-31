@@ -7,6 +7,10 @@
 html {
   font-size: 62.5%;
 }
+.container {
+  margin: 1.2rem;
+  float: left;
+}
 .collage {
   border: 1px solid black;
   width: 15rem;
