@@ -4,19 +4,19 @@ const collageNum = 37;
 for (let i = 0; i < collageNum; i++) {
   const container = document.createElement("div");
   container.className = `container-${i + 1} container`;
-  document.body.appendChild = container;
+  document.body.appendChild(container);
 }
 // Creating collage divs and labels
-
-for (let i = 0; i < collageNum; i++) {
+const containers = document.getElementsByClassName("container");
+Array.from(containers).forEach((container, i) => {
   const ele = document.createElement("div");
   const label = document.createElement("span");
   ele.className = `collage-${i + 1} collage`;
   label.className = `label-${i + 1} label`;
   label.textContent = `Collage ${i + 1}`;
-  document.body.appendChild(ele);
-  document.body.appendChild(label);
-}
+  container.appendChild(ele);
+  container.appendChild(label);
+});
 
 // Arranging the collage numbers according to the number of child divs they have
 const childElements = [
