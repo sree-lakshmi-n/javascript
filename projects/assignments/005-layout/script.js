@@ -7,7 +7,7 @@ for (let i = 0; i < collageNum; i++) {
   document.body.appendChild(ele);
 }
 
-// Number of child divs for each collage
+// Arranging the collage numbers according to the number of child divs they have
 const childElements = [
   [4, 5, 10, 14],
   [1, 2, 3, 7, 12, 15, 16, 17, 34],
