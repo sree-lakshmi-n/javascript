@@ -4,8 +4,13 @@
   margin: 0;
   padding: 0;
 }
+html {
+  font-size: 62.5%;
+}
 .collage {
   border: 1px solid black;
+  width: 15rem;
+  height: 15rem;
 }
 .collage-element {
   background-color: black;
