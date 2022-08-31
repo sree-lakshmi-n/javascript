@@ -8,11 +8,28 @@ for (let i = 0; i < collageNum; i++) {
 }
 
 // Number of child divs for each collage
-const twoChildren = [4, 5, 10, 14];
-const threeChildren = [1, 2, 3, 7, 12, 15, 16, 17, 34];
-const fourChildren = [6, 13, 18, 27, 28, 29, 37];
-const fiveChildren = [8, 9, 11, 19, 20, 21, 23];
-const sixChildren = [24, 33];
-const sevenChildren = [26, 30, 32];
-const eightChildren = [22, 25];
-const nineChildren = [31, 35, 36];
+const childElements = [
+  [4, 5, 10, 14],
+  [1, 2, 3, 7, 12, 15, 16, 17, 34],
+  [6, 13, 18, 27, 28, 29, 37],
+  [8, 9, 11, 19, 20, 21, 23],
+  [24, 33],
+  [26, 30, 32],
+  [22, 25],
+  [31, 35, 36],
+];
+
+// Created child elements for each collage
+childElements.forEach((ele, index) => {
+  index += 2;
+  ele.forEach((collage) => {
+    const collageElement = document.getElementsByClassName(
+      `collage-${collage}`
+    )[0];
+    for (let i = 0; i < index; i++) {
+      const childDiv = document.createElement("div");
+      childDiv.className = `collage-${collage}--${i + 1} collage-element`;
+      collageElement.appendChild(childDiv);
+    }
+  });
+});
