@@ -1,10 +1,14 @@
 `use strict`;
 const collageNum = 37;
-// Creating collage divs
+// Creating collage divs and labels
 for (let i = 0; i < collageNum; i++) {
   const ele = document.createElement("div");
+  const label = document.createElement("span");
   ele.className = `collage-${i + 1} collage`;
+  label.className = `label-${i + 1} label`;
+  label.textContent = `Collage ${i + 1}`;
   document.body.appendChild(ele);
+  document.body.appendChild(label);
 }
 
 // Arranging the collage numbers according to the number of child divs they have
