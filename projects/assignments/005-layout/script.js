@@ -1,6 +1,13 @@
 `use strict`;
 const collageNum = 37;
+// Creating collage containers
+for (let i = 0; i < collageNum; i++) {
+  const container = document.createElement("div");
+  container.className = `container-${i + 1} container`;
+  document.body.appendChild = container;
+}
 // Creating collage divs and labels
+
 for (let i = 0; i < collageNum; i++) {
   const ele = document.createElement("div");
   const label = document.createElement("span");
