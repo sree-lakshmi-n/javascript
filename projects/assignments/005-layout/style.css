@@ -4,3 +4,10 @@
   margin: 0;
   padding: 0;
 }
+.collage {
+  border: 1px solid black;
+}
+.collage-element {
+  background-color: black;
+  border: 1px solid white;
+}
