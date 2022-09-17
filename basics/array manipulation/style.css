@@ -1,7 +1,13 @@
 body {
   height: 100vh;
-  background: linear-gradient((to top left, #28b487, #7dd56f));
+  background: linear-gradient(to top left, #4568dc, #b06ab3);
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  font-family: sans-serif;
+}
+h1 {
+  color: #fff;
+  font-size: 5.2rem;
 }
