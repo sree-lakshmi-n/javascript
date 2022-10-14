@@ -46,6 +46,11 @@ function createBoard(grid, array) {
   });
 }
 
+// Shuffling an array
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
 // arrangeCard function
 
 function arrangeCard() {
