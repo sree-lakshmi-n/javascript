@@ -13,6 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 60px auto;
+  gap: 2.4rem;
 }
 
 .popup {
