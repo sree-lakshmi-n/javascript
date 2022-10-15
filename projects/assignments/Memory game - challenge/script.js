@@ -42,7 +42,7 @@ function createBoard(grid, array) {
   array.forEach((arr, index) => {
     let img = document.createElement("img");
     img.setAttribute("src", "blank.png");
-    img.setAttribute("data-id", index);
+    img.setAttribute("data-id", index > 5 ? index - 6 : index);
     grid.appendChild(img);
   });
 }
