@@ -55,6 +55,12 @@ const shuffleArray = (array) => {
 
 function arrangeCard() {
   //arrange the cards in a shuffled order
+  imgs = document.querySelectorAll(".grid img");
+  const randomIndexArray = Array.from({ length: imgs.length }, (x, i) => i);
+  shuffleArray(randomIndexArray);
+  imgs.forEach((card, index) => {
+    card.style.order = randomIndexArray[index];
+  });
 }
 
 // flip Card function
