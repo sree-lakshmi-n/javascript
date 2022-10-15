@@ -1,6 +1,8 @@
 .grid img {
   /*Design the card */
   width: 200px;
+  height: 300px;
+  border: 5px solid rgb(225, 235, 240);
 }
 
 .grid img.flip {
