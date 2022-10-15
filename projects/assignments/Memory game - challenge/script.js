@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //createBoard function
 function createBoard(grid, array) {
   popup.style.display = "none";
+  array.push(...array);
   array.forEach((arr, index) => {
     let img = document.createElement("img");
     img.setAttribute("src", "blank.png");
