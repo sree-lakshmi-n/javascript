@@ -10,24 +10,40 @@ html {
 
 .grid {
   width: 90%;
-  height: 300px;
+  height: 30rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 60px auto;
   gap: 2.4rem;
 }
 
 .grid img {
   /*Design the card */
-  width: 200px;
-  height: 300px;
+  width: 15%;
+  height: 30rem;
   border: 5px solid rgb(225, 235, 240);
   background-color: transparent;
   perspective: 1000px;
+  position: relative;
+  backface-visibility: hidden;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
 .grid img.flip {
   /*flip the card*/
+  transform: rotateY(360deg);
+  animation: fadeIn 0.8s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .popup {
@@ -54,4 +70,10 @@ html {
 .data span {
   color: rgb(206, 121, 11);
   font-size: 30px;
+}
+
+@media (max-width: 800px) {
+  .grid img {
+    width: 20%;
+  }
 }
