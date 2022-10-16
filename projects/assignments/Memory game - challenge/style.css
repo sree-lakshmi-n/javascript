@@ -1,12 +1,11 @@
-.grid img {
-  /*Design the card */
-  width: 200px;
-  height: 300px;
-  border: 5px solid rgb(225, 235, 240);
+html {
+  font-size: 62.5%;
 }
 
-.grid img.flip {
-  /*flip the card*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .grid {
@@ -16,6 +15,19 @@
   flex-wrap: wrap;
   margin: 60px auto;
   gap: 2.4rem;
+}
+
+.grid img {
+  /*Design the card */
+  width: 200px;
+  height: 300px;
+  border: 5px solid rgb(225, 235, 240);
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.grid img.flip {
+  /*flip the card*/
 }
 
 .popup {
