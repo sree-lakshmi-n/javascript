@@ -1,0 +1,14 @@
+.top-nav {
+  width: 80%;
+  margin: auto;
+  padding: 4.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-nav__wrapper {
+  list-style: none;
+  display: flex;
+  gap: 3.2rem;
+  font-size: 1.6rem;
+}
