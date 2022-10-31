@@ -1,4 +1,5 @@
 import logo from "../images/logo.svg";
+import "./Nav.css";
 function Nav() {
   return (
     <nav className="top-nav">
