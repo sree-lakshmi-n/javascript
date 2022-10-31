@@ -1,3 +1,4 @@
+const noOfDistinctCards = 6;
 let cardArray = [
   { name: "fries", img: "fries.png" },
   { name: "cheeseburger", img: "cheeseburger.jpeg" },
@@ -38,11 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
 //createBoard function
 function createBoard(grid, array) {
   popup.style.display = "none";
-  array.push(...array);
+  if (cardArray.length === noOfDistinctCards) {
+    array.push(...array);
+  }
   array.forEach((arr, index) => {
     let img = document.createElement("img");
     img.setAttribute("src", "blank.png");
-    img.setAttribute("data-id", index > 5 ? index - 6 : index);
+    img.setAttribute("data-id", index);
     grid.appendChild(img);
   });
 }
@@ -75,27 +78,54 @@ function flipCard() {
   if (cardsId.length === 2) {
     setTimeout(checkForMatch, 500);
   }
+  if (cardsWon >= 5) {
+    setTimeout(checkWon, 500);
+  }
+  clicks++;
+  clickBoard.innerHTML = clicks;
 }
 
 // checkForMatch function
 
 function checkForMatch() {
   //your code
+  const cards = [
+    document.querySelector(`[data-id="${cardsId[0]}"]`),
+    document.querySelector(`[data-id="${cardsId[1]}"]`),
+  ];
+  if (cardsSelected[0] === cardsSelected[1]) {
+    cardsWon++;
+    scoreBoard.innerHTML = cardsWon;
+  } else {
+    console.log();
+
+    cards.forEach((card) => {
+      card.classList.remove("flip");
+      card.setAttribute("src", "blank.png");
+    });
+  }
+  cardsSelected = [];
+  cardsId = [];
 }
 
 // checkWon function
 function checkWon() {
   //your code
+  if (cardsWon === cardArray.length / 2) {
+    popup.style.display = "flex";
+  }
 }
 
 //replay function
 function replay() {
-  arrangeCard();
   grid.innerHTML = "";
   createBoard(grid, cardArray);
+  arrangeCard();
   cardsWon = 0;
   clicks = 0;
   clickBoard.innerHTML = 0;
   scoreBoard.innerHTML = 0;
   popup.style.display = "none";
+  imgs = document.querySelectorAll("img");
+  Array.from(imgs).forEach((img) => img.addEventListener("click", flipCard));
 }
