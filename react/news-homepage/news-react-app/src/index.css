@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+:root {
+  --grey: #fffdfa;
+}
 * {
   padding: 0;
   margin: 0;
@@ -15,7 +18,7 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fffdfa;
+  background-color: var(--grey);
   font-family: "Inter", sans-serif;
   font-weight: 400;
   line-height: 1;
