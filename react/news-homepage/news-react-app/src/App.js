@@ -1,7 +1,8 @@
 import "./App.css";
+import Nav from "./components/UI/Nav";
 
 const App = () => {
-  return <nav></nav>;
+  return <Nav>Hello World!</Nav>;
 };
 
 export default App;
