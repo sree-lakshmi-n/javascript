@@ -1,3 +1,5 @@
+import "./NavItems.css";
+
 const NavItems = () => {
   return (
     <ul className="nav-items-wrapper">
