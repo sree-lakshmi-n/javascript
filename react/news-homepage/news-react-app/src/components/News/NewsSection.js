@@ -46,7 +46,7 @@ const NewsSection = () => {
   return (
     <main className="news-section">
       <TopHeadline headline={topHeadline} />
-      <NewHeadlines />
+      <NewHeadlines headlines={newHeadlines} />
       <TopPicks />
     </main>
   );
