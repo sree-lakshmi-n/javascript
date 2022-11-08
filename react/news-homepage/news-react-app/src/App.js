@@ -1,8 +1,14 @@
 import "./App.css";
 import NavSection from "./components/Nav/NavSection";
+import NewsSection from "./components/News/NewsSection";
 
 const App = () => {
-  return <NavSection />;
+  return (
+    <div>
+      <NavSection />
+      <NewsSection />
+    </div>
+  );
 };
 
 export default App;
