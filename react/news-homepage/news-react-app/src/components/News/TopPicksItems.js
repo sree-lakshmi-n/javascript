@@ -2,14 +2,12 @@ const TopPicksItems = (props) => {
   return (
     <div className="top-picks__wrapper">
       <div className="top-pick__img">
-        {/* <img src={require(props.img)} /> */}
+        <img src={props.image} />
       </div>
       <div className="top-pick__textbox">
-        <p className="top-pick__num">01</p>
-        <p className="top-pick__title">Reviving Retro PCs</p>
-        <p className="top-pick__content">
-          What happens when old PCs are given modern upgrades?
-        </p>
+        <p className="top-pick__num">{props.num}</p>
+        <p className="top-pick__title">{props.title}</p>
+        <p className="top-pick__content">{props.content}</p>
       </div>
     </div>
   );
