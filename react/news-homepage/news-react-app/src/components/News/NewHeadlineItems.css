@@ -1,0 +1,16 @@
+.new-headlines__container {
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--dark-grayish-blue);
+}
+.new-headlines__container:last-child {
+  border: none;
+}
+.new-headlines__heading {
+  color: var(--off-white);
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
+  margin-bottom: 1.6rem;
+}
+.new-headlines__description {
+  line-height: 1.6;
+}
