@@ -1,0 +1,6 @@
+.top-headline__textbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 3.2rem;
+  column-gap: 4.8rem;
+}
