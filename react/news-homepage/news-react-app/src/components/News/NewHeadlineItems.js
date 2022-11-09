@@ -1,3 +1,4 @@
+import "./NewHeadlineItems.css";
 const NewHeadlineItems = (props) => {
   return (
     <div className="new-headlines__container">
