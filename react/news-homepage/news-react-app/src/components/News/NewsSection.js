@@ -47,7 +47,7 @@ const NewsSection = () => {
     <main className="news-section">
       <TopHeadline headline={topHeadline} />
       <NewHeadlines headlines={newHeadlines} />
-      <TopPicks />
+      <TopPicks topItem={topPicks} />
     </main>
   );
 };
