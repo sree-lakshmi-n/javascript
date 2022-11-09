@@ -10,3 +10,9 @@
   row-gap: 3.2rem;
   column-gap: 4.8rem;
 }
+.top-headline__title {
+  grid-row: 1 / span 2;
+}
+.top-headline__textbox > .read-more-btn {
+  grid-column: 2 / span 1;
+}
