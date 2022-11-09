@@ -3,6 +3,7 @@
   padding: 2.4rem;
   color: var(--grayish-blue);
   font-size: 1.4rem;
+  align-self: flex-start;
 }
 .new-headlines__title {
   color: var(--soft-orange);
