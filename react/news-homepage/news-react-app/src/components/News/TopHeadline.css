@@ -18,6 +18,10 @@
   font-weight: var(--font-bold);
   line-height: 1.05;
 }
+.top-headline-content {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
 .top-headline__textbox > .read-more-btn {
   grid-column: 2 / span 1;
 }
