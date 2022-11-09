@@ -24,4 +24,13 @@
 }
 .top-headline__textbox > .read-more-btn {
   grid-column: 2 / span 1;
+  justify-self: flex-start;
+  font-size: 1.4rem;
+  padding: 1.8rem 3.6rem;
+  border: none;
+  background-color: var(--soft-red);
+  color: var(--off-white);
+  text-transform: uppercase;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 0.2rem;
 }
