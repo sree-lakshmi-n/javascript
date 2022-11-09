@@ -4,3 +4,8 @@
   color: var(--grayish-blue);
   font-size: 1.4rem;
 }
+.new-headlines__title {
+  color: var(--soft-orange);
+  font-size: 3.2rem;
+  margin-bottom: 2.4rem;
+}
