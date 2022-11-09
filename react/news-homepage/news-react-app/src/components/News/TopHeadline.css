@@ -1,3 +1,9 @@
+.top-headline__img {
+  margin-bottom: 3.2rem;
+}
+.top-headline__img > img {
+  width: 100%;
+}
 .top-headline__textbox {
   display: grid;
   grid-template-columns: 1fr 1fr;
