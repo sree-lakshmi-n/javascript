@@ -4,7 +4,10 @@
   gap: 2.4rem;
   font-size: 1.6rem;
 }
+.nav-items {
+  cursor: pointer;
+}
 .nav-items:hover,
 .nav-items:active {
-  color: var(--very-dark-blue);
+  color: var(--soft-red);
 }

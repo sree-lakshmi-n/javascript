@@ -10,6 +10,10 @@
   font-size: 1.8rem;
   font-weight: var(--font-bold);
   margin-bottom: 1.6rem;
+  cursor: pointer;
+}
+.new-headlines__heading:hover {
+  color: var(--soft-orange);
 }
 .new-headlines__description {
   line-height: 1.6;

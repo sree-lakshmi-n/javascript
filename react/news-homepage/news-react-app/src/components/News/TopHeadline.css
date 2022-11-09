@@ -33,4 +33,9 @@
   text-transform: uppercase;
   font-weight: var(--font-semi-bold);
   letter-spacing: 0.2rem;
+  cursor: pointer;
+}
+.top-headline__textbox > .read-more-btn:hover {
+  color: var(--off-white);
+  background-color: var(--very-dark-blue);
 }
