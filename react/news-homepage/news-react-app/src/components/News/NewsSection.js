@@ -26,6 +26,7 @@ const NewsSection = () => {
   };
 
   const topPicks = {
+    num: ["01", "02", "03"],
     images: [
       "../../images/image-retro-pcs.jpg",
       "../../images/image-top-laptops.jpg",
