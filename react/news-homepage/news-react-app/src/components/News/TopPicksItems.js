@@ -1,3 +1,4 @@
+import "./TopPicks.css";
 const TopPicksItems = (props) => {
   return (
     <div className="top-picks__wrapper">
