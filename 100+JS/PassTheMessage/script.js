@@ -14,5 +14,14 @@ submitBtn.addEventListener("click", () => {
   lastMsg.setAttribute("class", "last-message");
   lastMsg.textContent = userInput.value;
   userInput.value = ""; // resetting input value
+  removePrevMsgs();
   lastMsgContainer.appendChild(lastMsg);
 });
+
+// Remove previous messages
+const removePrevMsgs = () => {
+  const lastMsg = document.getElementsByClassName("last-message");
+  if (lastMsg) {
+    Array.from(lastMsg).forEach((e) => e.remove());
+  }
+};
