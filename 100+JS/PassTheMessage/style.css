@@ -17,6 +17,7 @@ body {
   color: var(--mainBlack);
   line-height: 1;
   font-family: "Rubik", sans-serif;
+  font-weight: 400;
 }
 button {
   font-family: inherit;
