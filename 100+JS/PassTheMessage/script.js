@@ -9,13 +9,15 @@ lastMsgContainer.style.display = "none";
 
 // Adding the last message in last message container on clicking submit
 submitBtn.addEventListener("click", () => {
-  lastMsgContainer.style.display = "block";
-  const lastMsg = document.createElement("p");
-  lastMsg.setAttribute("class", "last-message");
-  lastMsg.textContent = userInput.value;
-  userInput.value = ""; // resetting input value
-  removePrevMsgs();
-  lastMsgContainer.appendChild(lastMsg);
+  if (userInput.value.length > 0) {
+    lastMsgContainer.style.display = "block";
+    const lastMsg = document.createElement("p");
+    lastMsg.setAttribute("class", "last-message");
+    lastMsg.textContent = userInput.value;
+    userInput.value = ""; // resetting input value
+    removePrevMsgs();
+    lastMsgContainer.appendChild(lastMsg);
+  }
 });
 
 // Remove previous messages
