@@ -53,6 +53,7 @@ body {
 }
 .counter-display {
   font-size: 5.4rem;
+  font-weight: 700;
   margin-bottom: 2.4rem;
 }
 .green-color {
