@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 :root {
   --light-yellow: #e2bc8a;
+  --text-black: #363a52;
+  --brown: #5d0a18;
+  --light-brown: #7d3b46;
+  --green: #819272;
+  --red: #c52412;
 }
 * {
   padding: 0;
@@ -18,4 +23,47 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  color: var(--text-black);
+}
+.root {
+  width: 40%;
+  text-align: center;
+}
+.title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin-bottom: 2.4rem;
+}
+.btn {
+  font-family: inherit;
+  color: var(--light-yellow);
+  font-weight: 500;
+  padding: 1.2rem;
+  text-transform: capitalize;
+  border: none;
+  background-color: var(--brown);
+  font-size: 1.4rem;
+}
+.btn:hover,
+.btn:active {
+  background-color: var(--light-brown);
+}
+.lower-count {
+  margin-right: 1.2rem;
+}
+.counter-display {
+  font-size: 5.4rem;
+  margin-bottom: 2.4rem;
+}
+.green-color {
+  color: var(--green);
+}
+.red-color {
+  color: var(--red);
+}
+@media screen and (max-width: 800px) {
+  .lower-count {
+    margin-right: unset;
+    margin-bottom: 1.2rem;
+  }
 }
