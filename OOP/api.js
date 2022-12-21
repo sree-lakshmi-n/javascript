@@ -5,7 +5,7 @@ function apitest(params) {
       console.log(request.responseText);
     }
   };
-  let url = "https://api.api-ninjas.com/v1/cats?name=abyssinian";
+  let url = "https://api.api-ninjas.com/v1/passwordgenerator?length=4";
   request.open("GET", url);
   request.setRequestHeader(
     "x-api-key",
